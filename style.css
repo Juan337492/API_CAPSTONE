@@ -1,0 +1,34 @@
+nav {
+    width: 90%;
+    height: auto;
+    background-color: black;
+}
+.navBar{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.navLinks{
+    color: white;
+    list-style: none;
+}
+li{
+    list-style-type: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    width: 90%;
+}
+#results{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+p{
+    padding: 0px 10px;
+}
+#playButton{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}

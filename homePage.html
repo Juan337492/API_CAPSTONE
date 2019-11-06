@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <title>HomePage</title>
+    <link rel="stylesheet" type="text/css"  href="style.css">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+    <script src="script.js"></script>
+<body>
+    <div class="container">
+<nav role="navigation">
+    <ul class="navBar">
+        <a><li class="navLinks">Home</li></a>
+        <a><li class="navLinks">Discover</li></a>
+    </ul>
+</nav>
+        <h1>Enter a Artist, Song, or Genre : </h1>
+        <form class="searchForm">
+    
+            <input type="text" class="userInput" placeholder="Artist, Song, or Genre">
+            <button type="submit" id="submitButton"name="button">SUBMIT</button>
+    
+        </form>
+        <p class="error"></p>
+          <section id="playAudioHere">
+              <audio id="playButton" controls></audio>
+          </section>
+    
+        </section>
+        <div id="searched"></div>
+        <ul id="results"></ul>
+        <section id="artist"></section>
+      </div>
+</body>
+</html>
+
