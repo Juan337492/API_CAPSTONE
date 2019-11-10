@@ -33,14 +33,18 @@ function getTracks(baseUrl, clientId, userInput){
     })
     }
     
-    window.onload = function() {
-        SC.initialize({
-          client_id: '10e27db0dacd00954d7160b4c092a6e2' //Demo ID
+    //steaming sound
+    SC.initialize({
+        client_id: '1SoBYKkeYLyQsSAiFMTGD0dc0ShJDKUf'
+      });
+      
+      // stream track id 293
+      SC.stream('/tracks/293').then(function(player){
+        player.play().then(function(){
+          console.log('Playback started!');
+        }).catch(function(e){
+          console.error('Playback rejected. Try calling play() from a user interaction.', e);
         });
-        
-        SC.stream("/tracks/75868018", function(sound){
-            $("playButton").attr("src", sound.uri);
-        });
-        };
+      });
    
 $(watchForm);
