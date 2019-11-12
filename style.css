@@ -1,5 +1,5 @@
 nav {
-    width: 90%;
+    width: 100%;
     height: auto;
     background-color: black;
 }
@@ -27,8 +27,13 @@ li{
 p{
     padding: 0px 10px;
 }
-#playButton{
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+#audioBox{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    border: solid 1px black;
+    justify-content: center;
+}
+.audioBox{
+    margin: 5px;
 }
