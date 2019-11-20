@@ -53,6 +53,7 @@ function getTracks(baseUrl, clientId, userInput){
         document.getElementById("10").addEventListener("click", selectTrack);
         selectTrack();
         scrollTop();
+        Clickreset();
     })
     .catch(error => {
         console.log(error);
@@ -97,6 +98,14 @@ function selectTrack () {
         play();
     }
   };
+
+  var Clickreset = function () {
+    clickCounter = 0;
+    $('ul li').click(function() {
+      clickCounter = 1;
+      console.log('click counter reset');
+    });
+  }
 
 function pause(){
   console.log('pause function running');
