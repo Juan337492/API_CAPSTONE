@@ -100,9 +100,8 @@ function selectTrack () {
   };
 
   var Clickreset = function () {
-    clickCounter = 0;
     $('ul li').click(function() {
-      clickCounter = 1;
+      clickCounter = 0;
       console.log('click counter reset');
     });
   }
