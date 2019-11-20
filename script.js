@@ -2,6 +2,7 @@ var tracksId;
 var stream;
 var i;
 var btn;
+var clickCounter = 0;
 //gets user input from text box 
 function watchForm(){
     $('.searchForm').on('submit', function() {
@@ -18,7 +19,7 @@ function watchForm(){
 
 //gets and displays music tracks as list
 function getTracks(baseUrl, clientId, userInput){
-    const url = baseUrl + '/tracks?' + '&client_id=' + clientId + '&q=' + userInput;
+    const url = baseUrl + '/tracks?' + '&client_id=' + clientId + '&q=' + userInput + '&limit=10';
     console.log(url);
     fetch(url)
     .then((data) => data.json())
@@ -29,14 +30,16 @@ function getTracks(baseUrl, clientId, userInput){
           if (i < 100){
             i++;
              html += `
-            <li><p>User : ${tracks.user.username}<p><p>Title : ${tracks.title}</p><p>Description : ${tracks.description}</p> 
-            <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p>
-            <button id='${i}' value="${(tracks.id)}">Select Track</button>
+            <li id='${i}' value='${(tracks.id)}' class="resultsBorder">
+            <p>User : ${tracks.user.username}</p>
+            <p>Title : ${tracks.title}</p>
+            <img src='${tracks.artwork_url}'>
+            <p>Description : ${tracks.description}</p> 
+            <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p></li>
             `
           };
-       
-        });
-        
+
+        });      
         document.getElementById('results').innerHTML = html;
         document.getElementById("1").addEventListener("click", selectTrack);
         document.getElementById("2").addEventListener("click", selectTrack);
@@ -48,6 +51,8 @@ function getTracks(baseUrl, clientId, userInput){
         document.getElementById("8").addEventListener("click", selectTrack);
         document.getElementById("9").addEventListener("click", selectTrack);
         document.getElementById("10").addEventListener("click", selectTrack);
+        selectTrack();
+        scrollTop();
     })
     .catch(error => {
         console.log(error);
@@ -56,18 +61,15 @@ function getTracks(baseUrl, clientId, userInput){
     
 window.onload = function() {
   document.getElementById("playButton").addEventListener("click", playButton);
-  document.getElementById("nextButton").addEventListener("click", nextButton);
   document.getElementById("replayButton").addEventListener("click", replayButton);
   document.getElementById("pauseButton").addEventListener("click", pauseButton);
 };
 
 function selectTrack () {
-console.log("button clicked");
-
-$("button").click(function() {
-  tracksId = $(this).attr("value");
-})
-console.log(tracksId);
+  $('ul li').click(function() {
+    tracksId = $(this).attr("value");
+    console.log('list element clicked')
+  });
 };
 
 //plays music by clicking play button
@@ -87,19 +89,23 @@ console.log(tracksId);
         });
       });
    };
-   
-  //plays next song button
-  function nextButton(){
-  
-  };
-
 
   function pauseButton(){
-stream.pause().then(player =()=>{
-  console.log('paused song');
-});
-};
+    pause();
+    clickCounter += 1;
+    if (clickCounter % 2===0){
+        play();
+    }
+  };
 
+function pause(){
+  console.log('pause function running');
+  return stream.pause();
+}
+function play(){
+  console.log('play function running');
+  return stream.play();
+}
   //replay song button
   function replayButton(){
     console.log('song rewinded');
@@ -109,5 +115,10 @@ stream.pause().then(player =()=>{
     });
   };
   
+function scrollTop(){
+  $('ul li').click(function() {
+    window.scrollTo(0,0);
+  });
+};
 
 $(watchForm);
