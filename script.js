@@ -17,50 +17,6 @@ function watchForm(){
     })
 }
 
-//gets and displays music tracks as list for discover page
-function discoverTrack (){
- const url = 'https://api-v2.soundcloud.com/charts?kind=top&genre=soundcloud%3Agenres%3Aall-music&limit=20&offset=0&linked_partitioning=1&client_id=1SoBYKkeYLyQsSAiFMTGD0dc0ShJDKUf'
- console.log(url);
- fetch(url)
- .then((data) => data.json())
- .then(function(data){
-   data.forEach(function(tracks){
-    let i=0; 
-    let html = '';
-    data.forEach(function(tracks){
-      if (i < 100){
-        i++;
-         html += `
-        <li id='${i}' value='${(tracks.id)}' class="resultsBorder">
-        <p>User : ${tracks.user.username}</p>
-        <p>Title : ${tracks.title}</p>
-        <img src='${tracks.artwork_url}'>
-        <p>Description : ${tracks.description}</p> 
-        <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p></li>
-        `
-      };
-
-    });      
-    document.getElementById('results').innerHTML = html;
-    document.getElementById("1").addEventListener("click", selectTrack);
-    document.getElementById("2").addEventListener("click", selectTrack);
-    document.getElementById("3").addEventListener("click", selectTrack);
-    document.getElementById("4").addEventListener("click", selectTrack);
-    document.getElementById("5").addEventListener("click", selectTrack);
-    document.getElementById("6").addEventListener("click", selectTrack);
-    document.getElementById("7").addEventListener("click", selectTrack);
-    document.getElementById("8").addEventListener("click", selectTrack);
-    document.getElementById("9").addEventListener("click", selectTrack);
-    document.getElementById("10").addEventListener("click", selectTrack);
-    selectTrack();
-    scrollTop();
-    Clickreset();
-})
-.catch(error => {
-    console.log(error);
-})
-});
-};
 
 //gets and displays music tracks as list
 function getTracks(baseUrl, clientId, userInput){
@@ -109,7 +65,6 @@ window.onload = function() {
   document.getElementById("playButton").addEventListener("click", playButton);
   document.getElementById("replayButton").addEventListener("click", replayButton);
   document.getElementById("pauseButton").addEventListener("click", pauseButton);
-  this.document.getElementById("discoverButton").addEventListener("click",discoverTrack);
 };
 
 function selectTrack () {
