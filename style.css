@@ -3,9 +3,12 @@
     height: auto;
 }
 nav {
-    width: 100%;
+    width: 98%;
     height: auto;
     background-color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .navBar {
     display: flex;
