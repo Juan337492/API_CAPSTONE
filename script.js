@@ -9,7 +9,7 @@ function watchForm(){
         event.preventDefault();
         const baseUrl = 'https://api.soundcloud.com';
         const userInput = $('.userInput').val();
-        const clientId = '1SoBYKkeYLyQsSAiFMTGD0dc0ShJDKUf'
+        const clientId = '827d90477e86eb01e3dc6345c6272228'
         console.log(clientId);
         console.log(userInput);
         console.log(baseUrl);
@@ -77,7 +77,7 @@ function selectTrack () {
 //plays music by clicking play button
    function playButton(){
     SC.initialize({
-      client_id: '1SoBYKkeYLyQsSAiFMTGD0dc0ShJDKUf'
+      client_id: '827d90477e86eb01e3dc6345c6272228'
     });
     // stream track id 
     console.log(tracksId);
