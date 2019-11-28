@@ -30,14 +30,14 @@ function getTracks(baseUrl, clientId, userInput){
           if (i < 10){
             i++;
              html += `
-            <li>
+            <li class="white fontRaleWay">
             <p>User : ${tracks.user.username}</p>
             <p>Title : ${tracks.title}</p>
             <img src='${tracks.artwork_url}'>
             <p>Description : ${tracks.description}</p> 
             <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p>
-            <button class="audioBox" id="pauseButton" onclick="pauseButton()">Pause and Resume</button>
-            <button class="audioBox" id="${i}" value='${(tracks.id)}' onclick="playButton(this.id)">Play Song</button>
+            <button class="audioBox white active" id="pauseButton" onclick="pauseButton()">Pause and Resume</button>
+            <button class="audioBox white active" id="${i}" value='${(tracks.id)}' onclick="playButton(this.id)">Play Song</button>
             `
           };
      
