@@ -66,7 +66,6 @@ function selectTrack () {
   $(`#${e}`).click(function() {
     tracksId = $(this).attr("value");
 });
-console.log(tracksId);
 console.log('track selected');
 };
 
