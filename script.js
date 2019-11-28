@@ -55,7 +55,6 @@ function getTracks(baseUrl, clientId, userInput){
 function selectTrack (clicked_id) {
   console.log(clicked_id);
     tracksId = $('#'+clicked_id).attr("value");
-console.log(tracksId);
 console.log('track selected');
 };
 
@@ -65,7 +64,6 @@ console.log('track selected');
       client_id: '827d90477e86eb01e3dc6345c6272228'
     });
     // stream track id 
-    console.log(tracksId);
     SC.stream('/tracks/'+tracksId).then(function(player){
        stream = player; 
       player.play().then(function(){
