@@ -1,3 +1,4 @@
+/*For mobile phones*/
 .container {
     width: 100%;
     height: auto;
@@ -28,12 +29,6 @@ li {
     border: 1px solid black;
     width: 90%;
 }
-.resultsBorder:hover {
-    border: 2px solid blue;
-}
-.resultsBorder:active {
-    border: 2px solid red;
-}
 #results {
     display: flex;
     flex-direction: column;
@@ -42,19 +37,16 @@ li {
 p {
     padding: 0px 10px;
 }
-#audioBox {
-    display: flex;
-    flex-direction: row;
-    width: auto;
-    border: solid 1px black;
-    justify-content: center;
-}
+
 .audioBox {
     margin: 5px;
 }
-.alignCenter{
+.alignCenter {
     display: block;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
+}
+.activeTrack{
+border: 4px blue solid;
 }

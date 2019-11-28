@@ -1,6 +1,7 @@
 var tracksId;
 var stream;
-var i;
+var i = 0;
+var e;
 var btn;
 var clickCounter = 0;
 //gets user input from text box 
@@ -9,14 +10,13 @@ function watchForm(){
         event.preventDefault();
         const baseUrl = 'https://api.soundcloud.com';
         const userInput = $('.userInput').val();
-        const clientId = '827d90477e86eb01e3dc6345c6272228'
+        const clientId = '827d90477e86eb01e3dc6345c6272228';
         console.log(clientId);
         console.log(userInput);
         console.log(baseUrl);
         getTracks(baseUrl, clientId, userInput);
     })
-}
-
+};
 
 //gets and displays music tracks as list
 function getTracks(baseUrl, clientId, userInput){
@@ -28,50 +28,46 @@ function getTracks(baseUrl, clientId, userInput){
       let i=0; 
         let html = '';
         data.forEach(function(tracks){
+          e = 300;
+          if (e > 200){     
+            e--;
           if (i < 100){
             i++;
              html += `
-            <li id='${i}' value='${(tracks.id)}' class="resultsBorder">
+            <li class="resultsBorder" id="${i}">
             <p>User : ${tracks.user.username}</p>
             <p>Title : ${tracks.title}</p>
             <img src='${tracks.artwork_url}'>
             <p>Description : ${tracks.description}</p> 
-            <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p></li>
+            <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p>
+            <button class="audioBox" id="replayButton">Replay song</button>
+            <button class="audioBox" id="pauseButton">Pause and Resume</button>
+            <button class="audioBox" id="playButton">Play Song</button>
+            <button class="selectBtn" id="${e}" value='${(tracks.id)}' onclick="selectTrack()">Select track</button>
             `
           };
-
-        });      
+        };
+        });     
         document.getElementById('results').innerHTML = html;
-        document.getElementById("1").addEventListener("click", selectTrack);
-        document.getElementById("2").addEventListener("click", selectTrack);
-        document.getElementById("3").addEventListener("click", selectTrack);
-        document.getElementById("4").addEventListener("click", selectTrack);
-        document.getElementById("5").addEventListener("click", selectTrack);
-        document.getElementById("6").addEventListener("click", selectTrack);
-        document.getElementById("7").addEventListener("click", selectTrack);
-        document.getElementById("8").addEventListener("click", selectTrack);
-        document.getElementById("9").addEventListener("click", selectTrack);
-        document.getElementById("10").addEventListener("click", selectTrack);
-        selectTrack();
-        scrollTop();
+        document.getElementById("playButton").addEventListener("click", playButton);
+        document.getElementById("replayButton").addEventListener("click", replayButton);
+        document.getElementById("pauseButton").addEventListener("click", pauseButton);
+        document.getElementById(e).addEventListener("click",selectTrack);
         Clickreset();
+        selectTrack();
     })
     .catch(error => {
         console.log(error);
     })
     };
-    
-window.onload = function() {
-  document.getElementById("playButton").addEventListener("click", playButton);
-  document.getElementById("replayButton").addEventListener("click", replayButton);
-  document.getElementById("pauseButton").addEventListener("click", pauseButton);
-};
 
 function selectTrack () {
-  $('ul li').click(function() {
+  console.log(e);
+  $(`#${e}`).click(function() {
     tracksId = $(this).attr("value");
-    console.log('list element clicked')
-  });
+});
+console.log(tracksId);
+console.log('track selected');
 };
 
 //plays music by clicking play button
@@ -101,7 +97,7 @@ function selectTrack () {
   };
 
   var Clickreset = function () {
-    $('ul li').click(function() {
+    $(`#${e}`).click(function() {
       clickCounter = 0;
       console.log('click counter reset');
     });
@@ -123,11 +119,5 @@ function play(){
     return playButton();
     });
   };
-  
-function scrollTop(){
-  $('ul li').click(function() {
-    window.scrollTo(0,0);
-  });
-};
 
 $(watchForm);
