@@ -1,7 +1,6 @@
 var tracksId;
 var stream;
-var i = 0;
-var e;
+var i;
 var btn;
 var clickCounter = 0;
 //gets user input from text box 
@@ -25,47 +24,38 @@ function getTracks(baseUrl, clientId, userInput){
     fetch(url)
     .then((data) => data.json())
     .then(function(data){
-      let i=0; 
+       i = 0;
         let html = '';
         data.forEach(function(tracks){
-          e = 300;
-          if (e > 200){     
-            e--;
-          if (i < 100){
+          if (i < 10){
             i++;
              html += `
-            <li class="resultsBorder" id="${i}">
+            <li>
             <p>User : ${tracks.user.username}</p>
             <p>Title : ${tracks.title}</p>
             <img src='${tracks.artwork_url}'>
             <p>Description : ${tracks.description}</p> 
             <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p>
-            <button class="audioBox" id="replayButton">Replay song</button>
-            <button class="audioBox" id="pauseButton">Pause and Resume</button>
-            <button class="audioBox" id="playButton">Play Song</button>
-            <button class="selectBtn" id="${e}" value='${(tracks.id)}' onclick="selectTrack()">Select track</button>
+            <button class="audioBox" id="replayButton" onclick="replayButton()">Replay song</button>
+            <button class="audioBox" id="pauseButton" onclick="pauseButton()">Pause and Resume</button>
+            <button class="audioBox" id="playButton" onclick="playButton()">Play Song</button>
+            <button class="selectBtn" id="${i}" value='${(tracks.id)}' onclick="selectTrack(this.id)">Select track</button>
             `
           };
-        };
+     
         });     
         document.getElementById('results').innerHTML = html;
-        document.getElementById("playButton").addEventListener("click", playButton);
-        document.getElementById("replayButton").addEventListener("click", replayButton);
-        document.getElementById("pauseButton").addEventListener("click", pauseButton);
-        document.getElementById(e).addEventListener("click",selectTrack);
         Clickreset();
-        selectTrack();
     })
     .catch(error => {
         console.log(error);
     })
     };
 
-function selectTrack () {
-  console.log(e);
-  $(`#${e}`).click(function() {
-    tracksId = $(this).attr("value");
-});
+function selectTrack (clicked_id) {
+  console.log(clicked_id);
+    tracksId = $('#'+clicked_id).attr("value");
+console.log(tracksId);
 console.log('track selected');
 };
 
@@ -76,7 +66,6 @@ console.log('track selected');
     });
     // stream track id 
     console.log(tracksId);
-    selectTrack();
     SC.stream('/tracks/'+tracksId).then(function(player){
        stream = player; 
       player.play().then(function(){
@@ -96,7 +85,7 @@ console.log('track selected');
   };
 
   var Clickreset = function () {
-    $(`#${e}`).click(function() {
+    $(selectTrack()).click(function() {
       clickCounter = 0;
       console.log('click counter reset');
     });
