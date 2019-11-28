@@ -51,10 +51,10 @@ function getTracks(baseUrl, clientId, userInput){
     })
     };
 
+// when no valid track name or artist is entered run this function
 function noTrack() {
 var input = $('li').attr("value");
 let html = '';
-console.log(input);
 if (input != 'hasTrack'){
   html += `
             <li class="white fontRaleWay ">
@@ -69,7 +69,7 @@ if (input != 'hasTrack'){
 function selectTrack (clicked_id) {
   console.log(clicked_id);
     tracksId = $('#'+clicked_id).attr("value");
-console.log('track selected');
+  console.log('track selected');
 };
 
 //plays music by clicking play button
