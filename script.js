@@ -30,7 +30,7 @@ function getTracks(baseUrl, clientId, userInput){
           if (i < 10){
             i++;
              html += `
-            <li class="white fontRaleWay">
+            <li class="white fontRaleWay" value="hasTrack">
             <p>User : ${tracks.user.username}</p>
             <p>Title : ${tracks.title}</p>
             <img src='${tracks.artwork_url}'>
@@ -40,15 +40,31 @@ function getTracks(baseUrl, clientId, userInput){
             <button class="audioBox white active" id="${i}" value='${(tracks.id)}' onclick="playButton(this.id)">Play Song</button>
             `
           };
-     
+        
         });     
         document.getElementById('results').innerHTML = html;
         Clickreset();
+        noTrack();
     })
     .catch(error => {
         console.log(error);
     })
     };
+
+function noTrack() {
+var input = $('li').attr("value");
+let html = '';
+console.log(input);
+if (input != 'hasTrack'){
+  html += `
+            <li class="white fontRaleWay ">
+            <p class="white fontRaleWay " id="noTrack"> Try something else </p>
+            </li>
+            `
+ document.getElementById('results').innerHTML = html;
+}
+
+};
 
 function selectTrack (clicked_id) {
   console.log(clicked_id);
