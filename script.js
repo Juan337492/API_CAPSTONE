@@ -36,10 +36,8 @@ function getTracks(baseUrl, clientId, userInput){
             <img src='${tracks.artwork_url}'>
             <p>Description : ${tracks.description}</p> 
             <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p>
-            <button class="audioBox" id="replayButton" onclick="replayButton()">Replay song</button>
             <button class="audioBox" id="pauseButton" onclick="pauseButton()">Pause and Resume</button>
-            <button class="audioBox" id="playButton" onclick="playButton()">Play Song</button>
-            <button class="selectBtn" id="${i}" value='${(tracks.id)}' onclick="selectTrack(this.id)">Select track</button>
+            <button class="audioBox" id="${i}" value='${(tracks.id)}' onclick="playButton(this.id)">Play Song</button>
             `
           };
      
@@ -59,7 +57,8 @@ console.log('track selected');
 };
 
 //plays music by clicking play button
-   function playButton(){
+   function playButton(clicked_id){
+     selectTrack(clicked_id);
     SC.initialize({
       client_id: '827d90477e86eb01e3dc6345c6272228'
     });
@@ -97,13 +96,4 @@ function play(){
   console.log('play function running');
   return stream.play();
 }
-  //replay song button
-  function replayButton(){
-    console.log('song rewinded');
-    stream.pause().then(function(){
-      console.log('replaying song');
-    return playButton();
-    });
-  };
-
 $(watchForm);
