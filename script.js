@@ -10,9 +10,6 @@ function watchForm(){
         const baseUrl = 'https://api.soundcloud.com';
         const userInput = $('.userInput').val();
         const clientId = '827d90477e86eb01e3dc6345c6272228';
-        console.log(clientId);
-        console.log(userInput);
-        console.log(baseUrl);
         getTracks(baseUrl, clientId, userInput);
     })
 };
@@ -20,7 +17,6 @@ function watchForm(){
 //gets and displays music tracks as list
 function getTracks(baseUrl, clientId, userInput){
     const url = baseUrl + '/tracks?' + '&client_id=' + clientId + '&q=' + userInput + '&limit=10';
-    console.log(url);
     fetch(url)
     .then((data) => data.json())
     .then(function(data){
@@ -30,14 +26,14 @@ function getTracks(baseUrl, clientId, userInput){
           if (i < 10){
             i++;
              html += `
-            <li class="white fontRaleWay" value="hasTrack">
+            <li class="white fontRaleWay">
             <p>User : ${tracks.user.username}</p>
             <p>Title : ${tracks.title}</p>
-            <img src='${tracks.artwork_url}'>
+            <img src='${tracks.artwork_url}' alt=" track image">
             <p>Description : ${tracks.description}</p> 
             <p>Minutes : ${(tracks.duration / 60000).toFixed(2)}</p>
-            <button class="audioBox white active" id="pauseButton" onclick="pauseButton()">Pause and Resume</button>
             <button class="audioBox white active" id="${i}" value='${(tracks.id)}' onclick="playButton(this.id)">Play Song</button>
+            <button class="audioBox white active pauseButton" onclick="pauseButton()">Pause and Resume</button>
             `
           };
         
@@ -50,12 +46,49 @@ function getTracks(baseUrl, clientId, userInput){
         console.log(error);
     })
     };
+//gets user input from lyrics search form
+function lyricsForm(){
+  $('.lyricsForm').on('submit', function() {
+      event.preventDefault();
+      const baseUrl = 'https://api.lyrics.ovh/v1/';
+      const artistInput = $('.artistInput').val();
+      const trackInput = $('.trackInput').val();
+      getLyrics(baseUrl, artistInput, trackInput);
+  })
+};
+
+//gets and displays lyrics
+function getLyrics(baseUrl, artistInput, trackInput){
+  const url = baseUrl + artistInput+'/'+ trackInput;
+  console.log(url)
+  fetch(url)
+  .then((data) => data.json())
+  .then(function(data){
+      let html = '';
+      console.log(data.lyrics);
+      data.forEach(function(val){
+      
+           html += `
+           <li class="white fontRaleWay">
+           <p>Lyrics : ${val.lyrics}</p>
+           </li>
+          `
+
+      });     
+      document.getElementById('lyricsResults').innerHTML = html;
+      document.querySelector('lyricsResults').innerHTML = html;
+      
+  })
+  .catch(error => {
+      console.log(error);
+  })
+  };
 
 // when no valid track name or artist is entered run this function
 function noTrack() {
-var input = $('li').attr("value");
+var input = $('li').attr("class");
 let html = '';
-if (input != 'hasTrack'){
+if (input != 'white fontRaleWay'){
   html += `
             <li class="white fontRaleWay ">
             <p class="white fontRaleWay " id="noTrack"> Try something else </p>
@@ -63,13 +96,10 @@ if (input != 'hasTrack'){
             `
  document.getElementById('results').innerHTML = html;
 }
-
 };
 
 function selectTrack (clicked_id) {
-  console.log(clicked_id);
     tracksId = $('#'+clicked_id).attr("value");
-  console.log('track selected');
 };
 
 //plays music by clicking play button
@@ -100,16 +130,15 @@ function selectTrack (clicked_id) {
   var Clickreset = function () {
     $(selectTrack()).click(function() {
       clickCounter = 0;
-      console.log('click counter reset');
     });
   }
 
 function pause(){
-  console.log('pause function running');
   return stream.pause();
 }
 function play(){
-  console.log('play function running');
   return stream.play();
 }
+
 $(watchForm);
+$(lyricsForm);

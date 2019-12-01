@@ -17,17 +17,18 @@
         <a href="lyrics.html" id="lyricsLink"><p class="navLinks fontRaleWay">Lyrics</p></a>
     </div>
 </nav>
-        <h1 class="white alignCenter fontRaleWay">Enter a artist or song: </h1>
-        <form class="searchForm">
+        <h1 class="white alignCenter fontRaleWay">Enter a artist and song title: </h1>
+        <form class="lyricsForm">
     
-            <input type="text" class="userInput alignCenter fontRaleWay" placeholder="Artist, Song, or Genre">
-            <button type="submit" class="alignCenter fontOpenSans white" id="submitButton" name="button">SUBMIT</button>
+            <input type="text" class="artistInput userInput alignCenter fontRaleWay" placeholder="Artist name">
+            <input type="text" class="trackInput userInput alignCenter fontRaleWay" placeholder="Song name">
+            <button type="submit" class="alignCenter fontOpenSans white" id="lyricsSubmit" name="button">SUBMIT</button>
     
         </form>
         
         <p class="error"></p>
           
-        <ul id="results"></ul>
+        <ul id="lyricsResults"></ul>
       </div>
 </body>
 </html>
