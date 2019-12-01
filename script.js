@@ -111,6 +111,7 @@ function displayData(data) {
   // Display the song lyrics
   $( '#lyricsResults' ).html(`<li class="white fontRaleWay"><p id="lyrics">${ data.lyrics }</p>
   <button class="alignCenter fontOpenSans white lyricsBtn" id="submitButton" onclick="print('lyricsResults')">Print lyrics</button></li>`);
+  noLyrics();
 }
 
 // when no valid track name or artist is entered run this function
@@ -143,7 +144,6 @@ function watchSubmitForm() {
   // Watch for click on search button
   $( '.lyricsForm' ).on( 'submit', function( event )
   {
-      noLyrics();
       // Prevent Default
       event.preventDefault();
       
