@@ -10,6 +10,19 @@ function displayData(data)
   $( '#lyricsResults' ).html(`<li class="white fontRaleWay"><p id="lyrics">${ data.lyrics }</p>
   <button class="alignCenter fontOpenSans white lyricsBtn" id="submitButton" onclick="print('lyricsResults')">Print lyrics</button></li>`);
 }
+// when no valid track name or artist is entered run this function
+function noLyrics() {
+    var input = $('li').attr("class");
+    let html = '';
+    if (input != 'white fontRaleWay'){
+      html += `
+                <li class="white fontRaleWay ">
+                <p class="white fontRaleWay " id="noTrack"> Try something else </p>
+                </li>
+                `
+     document.getElementById('lyricsResults').innerHTML = html;
+    }
+};
 function print(divLyrics){
     var printContents = document.getElementById(divLyrics).innerHTML;
     w=window.open();
@@ -26,6 +39,7 @@ function watchSubmitForm()
   // Watch for click on search button
   $( '.lyricsForm' ).on( 'submit', function( event )
   {
+      noLyrics();
       // Prevent Default
       event.preventDefault();
       
