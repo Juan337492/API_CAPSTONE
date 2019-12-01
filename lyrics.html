@@ -8,19 +8,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans%7CRaleway&display=swap" rel="stylesheet"> 
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
 <body>
     <div class="container">
 <nav>
     <div class="navBar">
-        <a href="index.html" id="homeLink"><p class="navLinks fontRaleWay">Home</p></a>
-        <a href="lyrics.html" id="lyricsLink"><p class="navLinks fontRaleWay">Lyrics</p></a>
+        <a href="index.html" id="homeLink"><p class="navLinks fontRaleWay">Stream music</p></a>
+        <a href="lyrics.html" id="lyricsLink"><p class="navLinks fontRaleWay">Print lyrics</p></a>
     </div>
 </nav>
         <h1 class="white alignCenter fontRaleWay">Enter a artist and song title: </h1>
         <form class="lyricsForm">
     
-            <input type="text" class="artistInput userInput alignCenter fontRaleWay" placeholder="Artist name">
+            <input type="text" id="artistSearch" class="artistInput userInput alignCenter fontRaleWay" placeholder="Artist name">
             <input type="text" class="trackInput userInput alignCenter fontRaleWay" placeholder="Song name">
             <button type="submit" class="alignCenter fontOpenSans white" id="lyricsSubmit" name="button">SUBMIT</button>
     

@@ -40,7 +40,7 @@ li {
     list-style-type: none;
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 1px solid white;
+    border: 1px solid #694e31;
     width: 90%;
     font-size: 18px;
     word-wrap: break-word;
@@ -53,10 +53,13 @@ li {
     flex-direction: column;
     align-items: flex-start;
 }
-#lyricsResults{
+#lyricsResults {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+#lyrics {
+    padding: 15px;
 }
 p {
     padding: 0px 10px;
@@ -86,12 +89,16 @@ p {
     border-radius: 8px;
     margin-top: 15px;
     font-size: 17px;
+    margin-bottom: 15px;
 }
 #lyricsSubmit {
     background-color: #694e31;
     border-radius: 8px;
     margin-top: 15px;
     font-size: 17px;
+}
+#artistSearch {
+    margin-bottom: 10px;
 }
 .fontRaleWay {
     font-family: 'Raleway', sans-serif;

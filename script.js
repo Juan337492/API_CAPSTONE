@@ -46,43 +46,6 @@ function getTracks(baseUrl, clientId, userInput){
         console.log(error);
     })
     };
-//gets user input from lyrics search form
-function lyricsForm(){
-  $('.lyricsForm').on('submit', function() {
-      event.preventDefault();
-      const baseUrl = 'https://api.lyrics.ovh/v1/';
-      const artistInput = $('.artistInput').val();
-      const trackInput = $('.trackInput').val();
-      getLyrics(baseUrl, artistInput, trackInput);
-  })
-};
-
-//gets and displays lyrics
-function getLyrics(baseUrl, artistInput, trackInput){
-  const url = baseUrl + artistInput+'/'+ trackInput;
-  console.log(url)
-  fetch(url)
-  .then((data) => data.json())
-  .then(function(data){
-      let html = '';
-      console.log(data.lyrics);
-      data.forEach(function(val){
-      
-           html += `
-           <li class="white fontRaleWay">
-           <p>Lyrics : ${val.lyrics}</p>
-           </li>
-          `
-
-      });     
-      document.getElementById('lyricsResults').innerHTML = html;
-      document.querySelector('lyricsResults').innerHTML = html;
-      
-  })
-  .catch(error => {
-      console.log(error);
-  })
-  };
 
 // when no valid track name or artist is entered run this function
 function noTrack() {
