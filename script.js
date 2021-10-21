@@ -22,6 +22,7 @@ function getTracks(baseUrl, clientId, userInput){
     .then(function(data){
        i = 0;
         let html = '';
+        data = JSON.parse(data);
         data.forEach(function(tracks){
           if (i < 10){
             i++;
